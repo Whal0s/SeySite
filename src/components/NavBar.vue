@@ -20,7 +20,7 @@
 
 <style scoped lang="scss">
   #spacer {
-    margin: 20vh;
+    margin: 22vh;
     width: 100%;
   }
 
@@ -33,10 +33,9 @@
     width: 100%;
     font-family: "Pixelify Sans", sans-serif;
     display: inline-flex;
-    z-index: 2;
 
     .UploadSection {
-      flex-grow: 1;
+      flex-grow: 2;
       display: flex;
       justify-content: center;
       align-items: center;
