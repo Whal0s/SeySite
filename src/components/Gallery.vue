@@ -15,7 +15,7 @@
 
 <style scoped>
   #base{
-    bac: #535bf2;
+    background: #535bf2;
     .frame {
       display: grid;
       grid-template-columns: 10% 20%;

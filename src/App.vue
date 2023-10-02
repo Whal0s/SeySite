@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import NavBar from "./components/NavBar.vue";
-import Gallery from "./components/Gallery.vue";
+import GalleryColumn from "./components/GalleryColumn.vue";
 </script>
 
 <template>
   <NavBar/>
-  <Gallery/>
+  <GalleryColumn :images='["/seycove.png", "/seycove.png", "/seycove.png", "/seycove.png", "/seycove.png"]'/>
 </template>
 
 <style scoped>
