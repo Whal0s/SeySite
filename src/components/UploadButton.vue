@@ -11,7 +11,7 @@
 <style scoped>
 
   button {
-    font-family: "Pixelify Sans";
+    font-family: "Pixelify Sans", sans-serif;
     height: 40%;
     width: 58%;
     background-color: #535bf2;
