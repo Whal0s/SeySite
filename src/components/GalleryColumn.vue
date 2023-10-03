@@ -5,16 +5,11 @@
 </script>
 
 <template>
-  <div id="wrapper" v-for="image in images">
-    <Image :image="image"/>
-  </div>
+    <div class="wrapper" v-for="image in images">
+        <Image :image="image"/>
+    </div>
 </template>
 
 <style scoped lang="scss">
-    #wrapper {
-        rotate: 90deg;
-      * {
-        transform: rotate(-90deg);
-      }
-    }
+
 </style>
