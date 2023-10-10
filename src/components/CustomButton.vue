@@ -1,9 +1,8 @@
 <script setup>
-
 </script>
 
 <template>
-  <button>
+  <button id="thebutton">
     <slot>Default Button Text</slot>
   </button>
 </template>
