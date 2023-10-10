@@ -1,9 +1,28 @@
 <script setup>
+import database from "../firebase/init.js";
+import { collection, addDoc } from 'firebase/firestore'
+
+function buttonClicked() {
+  const collectionRef = collection(database, 'images')
+
+  const dataObject = {
+    val1: "bye",
+    val2: "bobby"
+  }
+
+  const docRef = addDoc(collectionRef, dataObject)
+
+  console.log(docRef)
+
+
+}
+ defineEmits(['buttonClicked'])
+
 
 </script>
 
 <template>
-  <button>
+  <button class="btn" @click="buttonClicked">
     <slot>Default Button Text</slot>
   </button>
 </template>
