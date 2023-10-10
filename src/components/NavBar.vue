@@ -1,5 +1,5 @@
 <script setup>
-  import CustomButton from "./CustomButton.vue";
+  import CustomButton from "./UploadButton.vue";
 </script>
 
 <template>
@@ -9,7 +9,7 @@
       <custom-button>Upload Image</custom-button>
     </div>
     <div class="Titles">
-      <img src="/seycove.png">
+      <img src="/seycove.png" alt="seycove logo">
       <div>
         <h1>Seycove Photo Archive</h1>
         <h2>By: Jordan Lo & Thomas "Bobby" Harrison</h2>
