@@ -1,22 +1,16 @@
 <script setup>
-import database from "../firebase/init.js";
-import { collection, addDoc } from 'firebase/firestore'
+// filters out non-image files
+function validateImages(files) {
+  let result = []
 
-function buttonClicked() {
-  const collectionRef = collection(database, 'images')
-
-  const dataObject = {
-    val1: "bye",
-    val2: "bobby"
+  for (let file of files) {
+    if (file['type'].match("image/*")) {
+      result.push(file)
+    }
   }
 
-  const docRef = addDoc(collectionRef, dataObject)
-
-  console.log(docRef)
-
-
+  return result
 }
- defineEmits(['buttonClicked'])
 
 
 </script>
