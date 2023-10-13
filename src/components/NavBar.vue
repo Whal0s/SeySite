@@ -48,6 +48,33 @@
         margin-right: 5%;
       }
 
+      h1, h2 {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+
+        background: linear-gradient(to right, rgba(0, 72, 255, 0.23) 50%, rgba(0, 0, 0, 0) 50%) right;
+        background-size: 200% 100%;
+        transition: .5s ease-in-out;
+      }
+
+      h1 {
+        padding-bottom: 3%;
+        margin-bottom: 0;
+        margin-top: 3%;
+        padding-right: 0;
+        font-size: 375%;
+      }
+
+      h1:hover, h2:hover {
+        background-position: left;
+      }
+
+
+      h2 {
+        margin-top: 0;
+      }
+
       flex-grow: 4;
       display: inline-flex;
       justify-content: center;

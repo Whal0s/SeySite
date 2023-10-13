@@ -4,7 +4,8 @@ function validateImages(files) {
   let result = []
 
   for (let file of files) {
-    if (file['type'].match("image/*")) {
+    if (file['type'].match("image/*") && is(file)) {
+      //validate image with AI
       result.push(file)
     }
   }
