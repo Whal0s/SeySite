@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^10.5.0",
     "firebase": "^10.4.0",
     "sass": "^1.68.0",
     "vue": "^3.3.4",

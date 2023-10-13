@@ -1,9 +1,22 @@
 <script setup>
+// filters out non-image files
+function validateImages(files) {
+  let result = []
+
+  for (let file of files) {
+    if (file['type'].match("image/*")) {
+      result.push(file)
+    }
+  }
+
+  return result
+}
+
 
 </script>
 
 <template>
-  <button>
+  <button class="btn" @click="buttonClicked">
     <slot>Default Button Text</slot>
   </button>
 </template>
@@ -11,7 +24,7 @@
 <style scoped>
 
   button {
-    font-family: "Pixelify Sans", sans-serif;
+    font-family: "Pixelify Sans";
     height: 40%;
     width: 58%;
     background-color: #535bf2;
