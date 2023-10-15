@@ -1,6 +1,9 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+// https://stackoverflow.com/a/70564696
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 import { getFirestore } from "firebase/firestore"
+import { getStorage } from "firebase/storage"
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -15,7 +18,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
+const storage = getStorage();
+const database = getFirestore();
 
-const database = getFirestore()
-export default database
+export { database, storage }
+

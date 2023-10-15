@@ -1,12 +1,13 @@
-import database from './init.js'
+import { database } from './init.js'
 import { collection, addDoc } from 'firebase/firestore'
 
-export function addToCollection() {
-    const collectionRef = collection(database, 'images')
+export function addToCollection(filename, url) {
+    const collectionRef = collection(database, 'images');
 
     const dataObject = {
-        val1: "bye",
-        val2: "bobby"
+        Name: filename,
+        URL: url,
+        date: Date.now(),
     }
 
     const docRef = addDoc(collectionRef, dataObject)
@@ -14,5 +15,5 @@ export function addToCollection() {
     console.log(docRef)
 }
 
-
+export default addToCollection;
 
