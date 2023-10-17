@@ -3,7 +3,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
-
+import { getAuth, signInWithPopup, OAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -22,5 +22,5 @@ const app = firebase.initializeApp(firebaseConfig);
 const storage = getStorage();
 const database = getFirestore();
 
-export { database, storage }
+export { database, storage, signInWithPopup }
 
