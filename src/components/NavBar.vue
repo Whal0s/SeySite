@@ -1,7 +1,7 @@
 <script setup>
   import CustomButton from "./UploadButton.vue";
 
-  defineEmits(['TitleClicked'])
+  defineEmits(['TitleClicked', 'SubtitleClicked'])
 </script>
 
 <template>
@@ -14,7 +14,7 @@
       <img src="/seycove.png" alt="seycove logo">
       <div>
         <h1 @click="$emit('TitleClicked')">Seycove Photo Archive</h1>
-        <h2>By: Jordan Lo & Thomas "Bobby" Harrison</h2>
+        <h2 @click="$emit('SubtitleClicked')">By: Jordan Lo & Thomas "Bobby" Harrison</h2>
       </div>
     </div>
   </nav>
@@ -35,6 +35,7 @@
     width: 100%;
     font-family: "Pixelify Sans", sans-serif;
     display: inline-flex;
+    color: white;
 
     .upload-section {
       margin-left: 5vw;
