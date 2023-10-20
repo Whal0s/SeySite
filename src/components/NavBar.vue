@@ -1,21 +1,23 @@
 <script setup>
   import CustomButton from "./UploadButton.vue";
+
+  defineEmits(['TitleClicked'])
 </script>
 
 <template>
   <div id="spacer"/>
-  <div id="base">
-    <div class="UploadSection">
+  <nav>
+    <div class="upload-section">
       <custom-button>Upload Image</custom-button>
     </div>
-    <div class="Titles">
+    <div class="titles">
       <img src="/seycove.png" alt="seycove logo">
       <div>
-        <h1>Seycove Photo Archive</h1>
+        <h1 @click="$emit('TitleClicked')">Seycove Photo Archive</h1>
         <h2>By: Jordan Lo & Thomas "Bobby" Harrison</h2>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <style scoped lang="scss">
@@ -24,7 +26,7 @@
     width: 100%;
   }
 
-  #base {
+  nav {
     background: linear-gradient(130deg, rgb(44, 54, 141) 0%, rgb(136, 165, 204) 100%);
     position: fixed;
     top: 0;
@@ -34,14 +36,16 @@
     font-family: "Pixelify Sans", sans-serif;
     display: inline-flex;
 
-    .UploadSection {
-      flex-grow: 2;
+    .upload-section {
+      margin-left: 5vw;
+      margin-right: 0;
+      flex-grow: 1;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .Titles {
+    .titles {
       img {
         height: 100%;
         object-fit: scale-down;

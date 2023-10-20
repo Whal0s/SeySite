@@ -5,7 +5,6 @@ import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 import { getAuth, signInWithPopup, OAuthProvider } from "firebase/auth";
 
-// Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyDrTK3YQMGKA55stIjn1jNsyFx51mWw7aU",
@@ -17,10 +16,28 @@ const firebaseConfig = {
     measurementId: "G-W9Z09Q0EWF"
 };
 
+// TODO: fix firebase rules to
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const storage = getStorage();
 const database = getFirestore();
+
+//Authentication
+const provider = new OAuthProvider('microsoft.com');
+const auth = getAuth();
+signInWithPopup(auth, provider)
+    .then((result) => {
+        // User is signed in.
+        // IdP data available in result.additionalUserInfo.profile.
+
+        // Get the OAuth access token and ID Token
+        const credential = OAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+        const idToken = credential.idToken;
+    })
+    .catch((error) => {
+        // Handle error.
+    });
 
 export { database, storage, signInWithPopup }
 

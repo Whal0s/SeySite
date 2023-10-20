@@ -10,9 +10,9 @@ export function addToCollection(filename, url) {
         date: Date.now(),
     }
 
-    const docRef = addDoc(collectionRef, dataObject)
+    const docRef = addDoc(collectionRef, dataObject);
 
-    console.log(docRef)
+    console.log(docRef);
 }
 
 export default addToCollection;
