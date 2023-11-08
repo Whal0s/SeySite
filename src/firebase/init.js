@@ -1,9 +1,9 @@
 // https://stackoverflow.com/a/70564696
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-import { getFirestore } from "firebase/firestore"
+import { collection, getDocs, getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
-import { getAuth, signInWithPopup, OAuthProvider } from "firebase/auth";
+import { getAuth, OAuthProvider } from "firebase/auth";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -21,10 +21,24 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const storage = getStorage();
 const database = getFirestore();
+let imageURLs = [[],[],[]]
+let i = 0
 
-//Authentication
-// const provider = new OAuthProvider('microsoft.com');
-// const auth = getAuth();
+const querySnapshot = await getDocs(collection(database, "images"));
+querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    imageURLs[i].push(doc.data().URL)
+    if (i < 2) {
+        i++
+    } else {
+        i = 0
+    }
+});
+
+console.log("URLs: ", imageURLs)
+
+const provider = new OAuthProvider('microsoft.com');
+const auth = getAuth();
 // signInWithPopup(auth, provider)
 //     .then((result) => {
 //         // User is signed in.
@@ -39,5 +53,5 @@ const database = getFirestore();
 //         // Handle error.
 //     });
 
-export { database, storage}
+export { database, storage, provider, auth, imageURLs }
 

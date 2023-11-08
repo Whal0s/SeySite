@@ -1,8 +1,8 @@
 <script setup>
 import { predict } from "../ImageValidator.js";
 import handleUpload from "../firebase/FirebaseStorage.js";
-
-let files
+import {auth, provider} from "../firebase/init.js";
+import {getRedirectResult, signInWithRedirect} from "firebase/auth"
 
 // filters out non-image files
 async function validateImages(files) {
@@ -10,30 +10,7 @@ async function validateImages(files) {
 
   for (let file of files) {
     if (file['type'].match("image/*")) {
-      //validate image with AI
-      let flagged = await predict(file)
-
-      if (flagged.length > 0) {
-        let formattedFlags = "";
-
-        if (flagged.length > 1) {
-          for (let i = 0; i < flagged.length; ++i) {
-            if (i === flagged.length - 1) {
-              formattedFlags += " and ";
-            } else if (i !== 0) {
-              formattedFlags += ", ";
-            }
-
-            formattedFlags += flagged[i].toUpperCase();
-          }
-        } else {
-          formattedFlags = flagged[0].toUpperCase();
-        }
-
-        alert("Your image has been flagged for " + formattedFlags);
-      } else {
         result.push(file);
-      }
     }
   }
 
@@ -42,15 +19,24 @@ async function validateImages(files) {
   return result
 }
 
+
+
 function getFiles(event) {
+  console.log("button has been pressed")
+  // signInWithRedirect(auth, provider);
+  // getRedirectResult(auth).then((result) => {
+  //         console.log("User has authenticated")
   validateImages(event.target.files).then(files => {
     for (let file of files) {
       handleUpload(file)
     }
   });
-}
+  //
+  // }).catch((error) => {
+  //
+  // });
 
-defineExpose(files)
+}
 </script>
 
 <template>

@@ -15,6 +15,7 @@ function handleUpload(file) {
     uploadTask.then(() => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             addToCollection(file.name, url)
+            return true
         });
     }).catch(console.error);
 }
