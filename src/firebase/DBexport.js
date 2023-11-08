@@ -12,7 +12,8 @@ export function addToCollection(filename, url) {
 
     const docRef = addDoc(collectionRef, dataObject);
 
-    console.log(docRef);
+    console.log(docRef)
+    return addDoc;
 }
 
 export default addToCollection;

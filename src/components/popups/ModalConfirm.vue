@@ -1,54 +1,75 @@
 <script setup>
-import { VueFinalModal } from 'vue-final-modal'
+import { VueFinalModal } from 'vue-final-modal';
 
-defineProps(['title'])
+const { title } = defineProps({
+  title: String,
+});
 
-const emit = defineEmits(['confirm'])
+const emit = defineEmits(['update:modelValue', 'confirm']);
 </script>
+
+<style lang="scss">
+.vue-final-modal {
+  &-content-class {
+    position: absolute;
+    inset: 10%;
+  }
+
+  &-content {
+    position: absolute;
+    inset: 10%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  &-modal {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 12px auto;
+    padding: 16px;
+    background-color: white;
+
+    &.dark {
+      background-color: #333;
+    }
+
+    &-header {
+      font-size: 1.25rem;
+    }
+
+    &-button {
+      margin-top: 8px;
+      margin-left: auto;
+      padding: 8px;
+      border: 1px solid #000;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: #eaeaea;
+      }
+    }
+  }
+}
+</style>
 
 <template>
   <VueFinalModal
-      class="confirm-modal"
-      content-class="confirm-modal-content"
-      overlay-transition="vfm-fade"
       content-transition="vfm-fade"
+      overlay-transition="vfm-fade"
+      content-class="vue-final-modal-content-class"
+      @update:model-value="(val) => emit('update:modelValue', val)"
   >
-    <div class="confirm-modal-content">
-      <h1>{{ title }}</h1>
-      <slot />
-      <button @click="emit('confirm')">
-        Confirm
-      </button>
+    <div class="vue-final-modal-content" @click.self="() => emit('update:modelValue', false)">
+      <div class="vue-final-modal-modal">
+        <h1 class="vue-final-modal-modal-header">
+          {{ title }}
+        </h1>
+        <slot />
+        <button class="vue-final-modal-modal-button" @click="() => emit('confirm')">
+          Confirm
+        </button>
+      </div>
     </div>
   </VueFinalModal>
 </template>
-
-<style>
-.confirm-modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.confirm-modal-content {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 0.5rem;
-}
-.confirm-modal-content > * + *{
-  margin: 0.5rem 0;
-}
-.confirm-modal-content h1 {
-  font-size: 1.375rem;
-}
-.confirm-modal-content button {
-  margin: 0.25rem 0 0 auto;
-  padding: 0 8px;
-  border: 1px solid;
-  border-radius: 0.5rem;
-}
-.dark .confirm-modal-content {
-  background: #000;
-}
-</style>

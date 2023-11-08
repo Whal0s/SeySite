@@ -8,7 +8,7 @@
 <template>
   <div id="base">
     <div class="frame">
-      <div class="column" v-for="imageArr in images">
+      <div class="column" v-for="imageArr in props.images">
         <GalleryColumn :images="imageArr"/>
       </div>
     </div>

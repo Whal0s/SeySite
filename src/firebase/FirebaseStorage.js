@@ -12,12 +12,14 @@ function handleUpload(file) {
     const storageRef = ref(storage, `/images/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    uploadTask.then(() => {
+    return uploadTask.then(() => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             addToCollection(file.name, url)
             return true
         });
     }).catch(console.error);
+
+    return
 }
 
 function makeID(length) {

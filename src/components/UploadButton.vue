@@ -1,5 +1,4 @@
 <script setup>
-import { predict } from "../ImageValidator.js";
 import handleUpload from "../firebase/FirebaseStorage.js";
 import {auth, provider} from "../firebase/init.js";
 import {getRedirectResult, signInWithRedirect} from "firebase/auth"
@@ -27,9 +26,12 @@ function getFiles(event) {
   // getRedirectResult(auth).then((result) => {
   //         console.log("User has authenticated")
   validateImages(event.target.files).then(files => {
+    //TODO unsure if this works
+    window.onbeforeunload = "You have attempted to leave the page while images are still uploading. This will cancel the upload. Are you sure?";
     for (let file of files) {
       handleUpload(file)
     }
+    window.onbeforeunload = null
   });
   //
   // }).catch((error) => {
