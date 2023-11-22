@@ -1,5 +1,6 @@
 <script setup>
   import GalleryColumn from "./GalleryColumn.vue";
+
   const props = defineProps(['images']);
 
   const numColumns = props.images.length

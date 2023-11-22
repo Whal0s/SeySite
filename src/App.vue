@@ -4,6 +4,14 @@
   import {ModalsContainer, useModal} from "vue-final-modal";
   import ModalConfirm from "./components/popups/ModalConfirm.vue";
   import {imageURLs} from "./firebase/init.js";
+  import {ref} from "vue";
+
+  const reloadKey = ref(0);
+
+  // TODO: every second check if imageURLs.length !== prevLength and refresh if necessary
+  setTimeout(() => {
+    reloadKey.value += 1
+  }, 1000);
 
   const MissionStatementPopup = useModal({
     component: ModalConfirm,
@@ -43,7 +51,7 @@
   <NavBar @title-clicked="MissionStatementPopup.open()" @subtitle-clicked="AboutPopup.open()"/>
 
   <!-- TODO: make this use images from the database -->
-  <Gallery :images='imageURLs' />
+  <Gallery :images="imageURLs" :key="reloadKey"/>
 </template>
 
 <style scoped>
