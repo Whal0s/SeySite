@@ -21,21 +21,28 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const storage = getStorage();
 const database = getFirestore();
-let imageURLs = [[],[],[]]
-let i = 0
 
-const querySnapshot = await getDocs(collection(database, "images"));
-querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    imageURLs[i].push(doc.data().URL)
-    if (i < 2) {
-        i++
-    } else {
-        i = 0
-    }
-});
 
-console.log("URLs: ", imageURLs)
+let i = 0;
+let imageURLs = [[], [], []];
+
+getDocs(collection(database, "images"))
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            imageURLs[i].push(doc.data().URL);
+            if (i < 2) {
+                i++;
+            } else {
+                i = 0;
+            }
+        });
+
+        console.log(imageURLs);
+    })
+    .catch((error) => {
+        // Handle errors here
+        console.error("Error fetching images:", error);
+    });
 
 const provider = new OAuthProvider('microsoft.com');
 const auth = getAuth();

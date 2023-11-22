@@ -33,7 +33,7 @@
       },
     },
     slots: {
-      default: '<p>About popup text</p>',
+      default: '<p>A developer team of good friends who decided to use their passion of programming to better their community.</p>',
     },
   })
 </script>
